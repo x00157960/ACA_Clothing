@@ -23,4 +23,5 @@ urlpatterns = [
     path('account/login/', views.SigninView, name='signin'),
     path('account/logout/', views.SignoutView, name='signout'),
     path('', include('cart.urls')),
+    path('home', include('shop.urls')),
 ]
