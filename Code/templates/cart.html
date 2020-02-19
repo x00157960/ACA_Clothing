@@ -1,4 +1,5 @@
-CART
+{% extends "base.html" %}
+{% block content %}
 <h2>Buy for PRICE</h2>
 <form action="{% url 'charge' %}" method="post">
   {% csrf_token %}
@@ -8,3 +9,4 @@ CART
           data-amount="500"
           data-locale="auto"></script>
 </form>
+{% endblock %}

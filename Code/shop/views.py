@@ -29,7 +29,7 @@ def SigninView(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request,user)
-                return redirect('products')
+                return redirect('cart')
             else:
                 return redirect('signup')
     else:
@@ -38,4 +38,4 @@ def SigninView(request):
 
 def SignoutView(request):
     logout(request)
-    return redirect('products')
+    return redirect('cart')
