@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/create/', views.SignupView, name='signup'),
     path('account/login/', views.SigninView, name='signin'),
-    path('account/logout/', views.SignoutView, name='signout')
+    path('account/logout/', views.SignoutView, name='signout'),
+    path('', include('cart.urls')),
 ]
