@@ -8,45 +8,47 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.views.generic import ListView
 from .models import Product, Category
-
+ 
 class ProductListView(ListView):
     model = Product
-    template_name = 'home.html'
-    context_object_name = 'all_product_list'
-    
+    template_name = 'browse.html'
+    context_object_name = 'all_products_list'
+
     def categories(self):
-        return Category.objects.all()
-        
-    def SignupView(request):
-        if request.method =='POST':
-            form = SignUpForm(request.POST)
-            if form.is_valid():
-                form.save()
-                username = form.cleaned_data.get('username')
-                signup_user = User.objects.get(username=username)
-                customer_group = Group.objects.get(name='Customers')
-                customer_group.user_set.add(signup_user)
-        else:
-            form = SignUpForm()
-        return render(request, 'accounts/signup.html', {'form':form})
+        return Category.objects.all()    
+
+def SignupView(request):
+    if request.method =='POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            signup_user = User.objects.get(username=username)
+            customer_group = Group.objects.get(name='Customers')
+            customer_group.user_set.add(signup_user)
+    else:
+        form = SignUpForm()
+    return render(request, 'accounts/signup.html', {'form':form})
    
 
-    def SigninView(request):
-        if request.method =='POST':
-            form = AuthenticationForm(data=request.POST)
-            if form.is_valid():
-                username = request.POST['username']
-                password = request.POST['password']
-                user = authenticate(username=username, password=password)
-                if user is not None:
-                    login(request,user)
-                    return redirect('cart')
-                else:
-                    return redirect('signup')
-        else:
-            form =AuthenticationForm()
-        return render(request, 'accounts/signin.html', {'form':form })
+def SigninView(request):
+    if request.method =='POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request,user)
+                return redirect('cart')
+            else:
+                return redirect('signup')
+    else:
+        form =AuthenticationForm()
+    return render(request, 'accounts/signin.html', {'form':form })
 
-    def SignoutView(request):
-        logout(request)
-        return redirect('cart')
+def SignoutView(request):
+    logout(request)
+    return redirect('cart')
+
+

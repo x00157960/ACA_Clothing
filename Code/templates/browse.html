@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+{% for product in all_products_list %}
+<table class="table table-bordered table-hover table-condensed">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Stock</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in all_products_list %}
+        <tr>
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.stock}}</td>
+            <td>&euro;{{product.price}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endfor %}
+{% endblock %}
