@@ -14,7 +14,13 @@
     </ul>
 </div>
 <div class="col-sm-9">
-    <h4>Note that all products are second hand, unless otherwise stated.</h4>
+    {% if messages %}
+        {% for msg in messages %}       
+            <div class="alert alert-success">
+            {{msg.message}}
+            </div>
+        {% endfor %}
+    {% endif %} 
     <table class="table table-bordered table-hover table-condensed">
         <thead>
             <!-- The header row-->
@@ -40,6 +46,8 @@
                 <td>{{product.description}}</td>
                 <td>{{product.stock}}</td>
                 <td>&euro;{{product.price}}</td>
+                <td><a href="{% url 'add_cart' product.id %}" class="btn btn-default btn-xs"><span
+                    class="fas fa-shopping-cart"></span></a></td>
             </tr>
             {% endfor %}
         </tbody>
