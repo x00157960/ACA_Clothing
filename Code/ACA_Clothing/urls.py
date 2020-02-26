@@ -7,6 +7,6 @@ urlpatterns = [
     path('account/create/', views.SignupView, name='signup'),
     path('account/login/', views.SigninView, name='signin'),
     path('account/logout/', views.SignoutView, name='signout'),
-    path('cart/', include('cart.urls')),
     path('shop/', include('shop.urls')),
+    path('cart/', include('cart.urls')),
 ]

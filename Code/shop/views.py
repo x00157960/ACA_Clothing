@@ -7,14 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.views.generic import ListView
 from .models import Category, Product
- 
-'''class ProductListView(ListView):
-    model = Product
-    template_name = 'products.html'
-    context_object_name = 'all_products_list'
 
-    def categories(self):
-        return Category.objects.all()''' 
 def product_list(request, category_id=None):
     category = None
     products = Product.objects.all()
@@ -25,7 +18,8 @@ def product_list(request, category_id=None):
 
     return render(request, 'products.html',
                     {'products': products,
-                    'countcat':ccat})   
+                    'countcat':ccat})
+ 
 
 def SignupView(request):
     if request.method =='POST':

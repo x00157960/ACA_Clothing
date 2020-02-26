@@ -1,8 +1,9 @@
-{% extends "base.html" %}
+<!-- templates/home.html -->
+{% extends 'base.html' %}
+
 {% block content %}
-{% for product in all_products_list %}
-<div>
-    <h4>CATEGORIES</h4>
+<div class="col-sm-3">
+    <h4>Categories</h4>
     <ul class="list-group">
         <a href="{% url 'products' %}" class="list-group-item"> All Categories </a>
         {% for c in countcat %} 
@@ -12,9 +13,11 @@
         {% endfor %}
     </ul>
 </div>
-<div>
+<div class="col-sm-9">
+    <h4>Note that all products are second hand, unless otherwise stated.</h4>
     <table class="table table-bordered table-hover table-condensed">
         <thead>
+            <!-- The header row-->
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -22,10 +25,12 @@
                 <th>Description</th>
                 <th>Stock</th>
                 <th>Price</th>
+                <th>Buy</th>
             </tr>
         </thead>
         <tbody>
-            {% for product in all_products_list %}
+            <!-- Product row(s) -->
+            {% for product in products %}
             <tr>
                 <td>{{product.id}}</td>
                 <td>{{product.name}}</td>
@@ -38,5 +43,4 @@
         </tbody>
     </table>
 </div>
-{% endfor %}
-{% endblock %}
+{% endblock content %}
