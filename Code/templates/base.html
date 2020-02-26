@@ -19,18 +19,17 @@
             <li class="nav-item active"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'products' %}">Categories</a></li>
             {% if request.user.is_authenticated %}
-            <li class="nav-item"><a class="nav-link" href="{% url 'signout' %}">Sign Out</a></li>
-              {% if item_count > 0 %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'cart' %}">
-                    <span class="fas fa-shopping-cart"></span>({{item_count}})</a>
-				        </li>
-		  		    {% endif %}
-        
+            <li class="nav-item"><a class="nav-link" href="{% url 'signout' %}">Sign Out</a></li>        
             {% else %}
             <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Register</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'signin' %}">Sign In</a></li>
             {% endif %}
+            {% if item_count > 0 %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'cart' %}">
+                <span class="fas fa-shopping-cart"></span>({{item_count}})</a>
+            </li>
+          {% endif %}
         </ul>
             
           <form class="form-inline mt-2 mt-md-0">

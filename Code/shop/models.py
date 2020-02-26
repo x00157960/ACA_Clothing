@@ -4,7 +4,8 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 
 class Category(models.Model):
-    name = models.TextField()  
+    name = models.TextField()
+    products = models.ManyToManyField('Product')  
 
     def get_products(self):
         return Product.objects.filter(category=self)
@@ -18,7 +19,6 @@ class Category(models.Model):
     
 class Product(models.Model):
     name = models.TextField()
-    category = models.ForeignKey(Category, related_name = 'products', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images/', blank=True)
     image_thumbnail = ImageSpecField(source='image',
                                 processors=[ResizeToFill(90, 90)],

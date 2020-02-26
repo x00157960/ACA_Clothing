@@ -1,4 +1,3 @@
-<!-- templates/home.html -->
 {% extends 'base.html' %}
 
 {% block content %}
@@ -23,11 +22,9 @@
     {% endif %} 
     <table class="table table-bordered table-hover table-condensed">
         <thead>
-            <!-- The header row-->
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Category</th>
                 <th>Image</th>
                 <th>Description</th>
                 <th>Stock</th>
@@ -36,7 +33,6 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Product row(s) -->
             {% for product in products %}
             <tr>
                 <td>{{product.id}}</td>
