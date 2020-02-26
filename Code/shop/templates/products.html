@@ -4,10 +4,11 @@
 <div>
     <h4>CATEGORIES</h4>
     <ul class="list-group">
-        {% for c in view.categories %}
-            <li class="list-group-item catheight"> {{c.name}}
-                <span class="badge">{{c.product_set.all|length}}</span>
-            </li>
+        <a href="{% url 'products' %}" class="list-group-item"> All Categories </a>
+        {% for c in countcat %} 
+            <a href="{{ c.get_absolute_url }}" class="list-group-item catheight">{{c.name}}     
+                    <span class="badge">{{c.num_products}}</span> 
+            </a> 
         {% endfor %}
     </ul>
 </div>

@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404, redirect
-
 from django.db.models import Count
 from django.contrib.auth.models import Group, User
 from django.shortcuts import render
@@ -7,15 +6,26 @@ from .forms import SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.views.generic import ListView
-from .models import Product, Category
+from .models import Category, Product
  
-class ProductListView(ListView):
+'''class ProductListView(ListView):
     model = Product
-    template_name = 'browse.html'
+    template_name = 'products.html'
     context_object_name = 'all_products_list'
 
     def categories(self):
-        return Category.objects.all()    
+        return Category.objects.all()''' 
+def product_list(request, category_id=None):
+    category = None
+    products = Product.objects.all()
+    ccat = Category.objects.annotate(num_products=Count('products'))
+    if(category_id):
+        category = get_object_or_404(Category, id=category_id)
+        products = products.filter(category=category)
+
+    return render(request, 'products.html',
+                    {'products': products,
+                    'countcat':ccat})   
 
 def SignupView(request):
     if request.method =='POST':
