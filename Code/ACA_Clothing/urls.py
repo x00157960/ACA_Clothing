@@ -11,6 +11,9 @@ urlpatterns = [
     path('account/logout/', views.SignoutView, name='signout'),
     path('shop/', include('shop.urls')),
     path('cart/', include('cart.urls')),
+    path('', include('pages.urls'), name='home'),
+    
+    
 ]
 
 if settings.DEBUG:
