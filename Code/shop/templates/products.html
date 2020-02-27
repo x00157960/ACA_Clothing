@@ -41,8 +41,13 @@
                 <td>{{product.description}}</td>
                 <td>{{product.stock}}</td>
                 <td>&euro;{{product.price}}</td>
+                {% if product.stock > 0 %}
                 <td><a href="{% url 'add_cart' product.id %}" class="btn btn-default btn-xs"><span
                     class="fas fa-shopping-cart"></span></a></td>
+                {% else %}
+                <td><a href="" class="btn btn-default btn-xs"><span
+                    class="fas fa-exclamation-triangle"></span></a></td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>

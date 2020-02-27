@@ -11,6 +11,7 @@ urlpatterns = [
     path('account/logout/', views.SignoutView, name='signout'),
     path('shop/', include('shop.urls')),
     path('cart/', include('cart.urls')),
+    path('order/', include('order.urls')),
     path('', include('pages.urls'), name='home'),
     
     
