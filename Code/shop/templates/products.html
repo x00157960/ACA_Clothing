@@ -13,6 +13,11 @@
     </ul>
 </div>
 <div class="col-sm-9">
+    <form class="from-inline my-2 my-lg-0" action="{% 'url search_result' %}" method="get"></form>
+        {%csrf_token %}
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+        <button class="fa fas-search" type="submit"></button>
+    </form>
     {% if messages %}
         {% for msg in messages %}       
             <div class="alert alert-success">

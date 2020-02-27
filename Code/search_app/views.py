@@ -7,4 +7,6 @@ def dearch_results(request):
     query = None
     if 'q' in request.GET:
         query = request.GET.get('q')
-        products = Product.objects.all().filter(Q(name__contins=query))
+        products = Product.objects.all().filter(Q(name__contins=query) | Q(description__contains=query))
+    retuen render(request, 'search.html', {'query':query, 'products':products})
+    
