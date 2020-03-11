@@ -28,11 +28,12 @@ def SignupView(request):
             form.save()
             username = form.cleaned_data.get('username')
             signup_user = User.objects.get(username=username)
-            customer_group = Group.objects.get(name='Customers')
+            customer_group = Group.objects.get(name='Customer')
             customer_group.user_set.add(signup_user)
     else:
         form = SignUpForm()
     return render(request, 'accounts/signup.html', {'form':form})
+
    
 
 def SigninView(request):
@@ -44,7 +45,7 @@ def SigninView(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request,user)
-                return redirect('cart')
+                return redirect('home')
             else:
                 return redirect('signup')
     else:
@@ -53,6 +54,6 @@ def SigninView(request):
 
 def SignoutView(request):
     logout(request)
-    return redirect('cart')
+    return redirect('home')
 
 
