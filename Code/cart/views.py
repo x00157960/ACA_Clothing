@@ -1,39 +1,15 @@
-import stripe
 from django.conf import settings
-from django.views.generic.base import TemplateView
 from django.shortcuts import render, redirect, get_object_or_404
 from shop.models import Product
 from .models import Cart, CartItem
 from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
-class CartPageView(TemplateView):
-    template_name = 'cart.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['key'] = settings.STRIPE_PUBLISHABLE_KEY
-        return context
-
-def charge(request):
-    if request.method == 'POST':
-        charge = stripe.Charge.create(
-            amount=500,
-            currency='EUR',
-            description='ACA Clothing',
-            source=request.POST['stripeToken']
-        )
-        return render(request, 'charge.html')
-
-
 def _cart_id(request):
 	cart = request.session.session_key
 	if not cart:
 		cart = request.session.create()
 	return cart
-
 
 def add_cart(request, product_id):
 	product = Product.objects.get(id=product_id)
