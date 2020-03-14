@@ -1,9 +1,138 @@
-<h2>Buy for $5.00</h2>
-<form action="{% url 'order_create' %}" method="post">
-  {% csrf_token %}
-  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="{{ key }}"
-          data-description="A Django Charge"
-          data-amount="500"
-          data-locale="auto"></script>
-</form>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="col-9 col-sm-9 col-md-6 col-lg-5 mx-auto bg-light ">
+
+  <h2>Enter Your Info</h2>
+  <form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputEmail4">Email</label>
+        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputPassword4">Password</label>
+        <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Subscibe to our newsletter to see new promotions and offers.
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    </div>
+    <div class="form-group">
+      <label for="inputAddress2">Address 2</label>
+      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCity">City</label>
+        <input type="text" class="form-control" id="inputCity">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputState">County</label>
+        <select id="inputState" class="form-control">
+          <option selected>Choose...</option>
+          <option>Antrim</option>
+          <option>Armagh</option>
+          <option>Carlow</option>
+          <option>Cavan</option>
+          <option>Clare</option>
+          <option>Cork</option>
+          <option>Derry</option>
+          <option>Donegal</option>
+          <option>Down</option>
+          <option>Dublin</option>
+          <option>Fermanagh</option>
+          <option>Galway</option>
+          <option>Kerry</option>
+          <option>Kildare</option>
+          <option>Kilkenny</option>
+          <option>Laois</option>
+          <option>Leitrim</option>
+          <option>Limerick</option>
+          <option>Longford</option>
+          <option>Louth</option>
+          <option>Mayo</option>
+          <option>Meath</option>
+          <option>Monaghan</option>
+          <option>Offaly</option>
+          <option>Roscommon</option>
+          <option>Sligo</option>
+          <option>Tipperary</option>
+          <option>Tyrone</option>
+          <option>Waterford</option>
+          <option>Westmeath</option>
+          <option>Wexford</option>
+          <option>Wicklow</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="inputZip">Eircode</label>
+        <input type="text" class="form-control" id="inputZip">
+      </div>
+    </div>
+
+    <h2>Enter Shipping Details</h2>
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-label col-sm-2 pt-0">Delivery Type</legend>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" checked>
+            <label class="form-check-label" for="gridRadios3">
+              Standard Delivery
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+            <label class="form-check-label" for="gridRadios2">
+              Express Delivery
+            </label>
+          </div>
+          <div class="form-check disabled">
+            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" disabled>
+            <label class="form-check-label" for="gridRadios1">
+              Deluxe Delivery (Only Available with ACA Plus Membership)
+            </label>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+
+    <form action="{% url 'order_create' %}" method="post">
+      {% csrf_token %}
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button" data-key="{{ key }}"
+        data-description="A Django Charge" data-amount="500" data-locale="auto"></script>
+    </form>
+    
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName('needs-validation');
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+              if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add('was-validated');
+            }, false);
+          });
+        }, false);
+      })();
+      </script>
+
+</div>
+{% endblock content %}
