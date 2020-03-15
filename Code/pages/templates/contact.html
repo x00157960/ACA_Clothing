@@ -1,4 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
-<H1>CONTACT</H1>
+<h1>Contact Us</h1>
+<div class="form-group">
+    <label for="Options1">Query Type:</label>
+    <select class="form-control" id="Options1">
+        <option>Deliveries and Tracking</option>
+        <option>Products</option>
+        <option>Refunds and Returns</option>
+        <option>Payment</option>
+        <option>Technical Support</option>
+        <option>Other</option>
+    </select>
+    <div class></div><label for="Textarea1" style="padding-top: 15px">How can we help?</label>
+    <textarea class="form-control" id="Textarea1" rows="3"></textarea>
+    <button type="submit" class="btn btn-primary mb-2" style="margin-top: 15px">Submit</button>
+</div>
 {% endblock %}

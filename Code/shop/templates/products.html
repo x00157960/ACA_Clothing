@@ -6,44 +6,51 @@
         width: 25%;
     }
 </style>
-<div class="col-sm-3">
-    <h4>Categories</h4>
-    <ul class="list-group">
-        <a href="{% url 'products' %}" class="list-group-item"> All Categories </a>
-        {% for c in countcat %}
-        <a href="{{ c.get_absolute_url }}" class="list-group-item catheight">{{c.name}}
-            <span class="badge">{{c.num_products}}</span>
-        </a>
-        {% endfor %}
-    </ul>
-</div>
-<div class="col-sm-9">
-    <form class="from-inline my-2 my-lg-0" action="{% url 'search_result' %}" method="get">
-        {%csrf_token %}
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
-        <button class="fa fas-search" type="submit"></button>
-    </form>
-    {% if messages %}
-    {% for msg in messages %}
-    <div class="alert alert-success">
-        {{msg.message}}
+<div class="row">
+    <div class="col-sm-2">
+        <h3>Categories</h3>
+        <ul class="list-group">
+            <a href="{% url 'products' %}" class="list-group-item"> All Categories </a>
+            {% for c in countcat %}
+            <a href="{{ c.get_absolute_url }}" class="list-group-item catheight">{{c.name}}
+                <span class="badge">{{c.num_products}}</span>
+            </a>
+            {% endfor %}
+        </ul>
     </div>
-    {% endfor %}
-    {% endif %}
-    <div class="card-deck">
-    {% for product in products %}
-        <div class="card" style="min-width: 20rem; max-width: 20rem;">
-          <img class="card-img-top" src="{{product.image_thumbnail.url}}" alt="{{product.name}}">
-          <div class="card-body">
-            <h5 class="card-title">{{product.name}}</h5>
-            <p class="card-text"><small class="text-muted">&euro;{{product.price}}</small></p>
-            {% if product.stock > 0 %}
-            <a class="nav-link" href="{% url 'add_cart' product.id %}"><button type ="button" class="btn btn-primary btn-lg btn-block">Add to Cart</button></a>
-            {% else %}
-            <a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">Currently Out of Stock</a>
-            {% endif %}
-          </div>
+    <div class="col-sm-10">
+        <form class="from-inline my-2 my-lg-0" action="{% url 'search_result' %}" method="get">
+            {%csrf_token %}
+            <form class="form-inline ">
+                <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search"
+                    aria-label="Search">
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </form>
+        </form>
+        {% if messages %}
+        {% for msg in messages %}
+        <div class="alert alert-success">
+            {{msg.message}}
         </div>
-    {% endfor %}
-</div>
+        {% endfor %}
+        {% endif %}
+        <div class="card-deck">
+            {% for product in products %}
+            <div class="card" style="min-width: 20rem; max-width: 20rem;">
+                <img class="card-img-top" src="{{product.image_thumbnail.url}}" alt="{{product.name}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text"><small class="text-muted">&euro;{{product.price}}</small></p>
+                    {% if product.stock > 0 %}
+                    <a class="nav-link" href="{% url 'add_cart' product.id %}"><button type="button"
+                            class="btn btn-primary btn-lg btn-block">Add to Cart</button></a>
+                    {% else %}
+                    <a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">Currently
+                        Out of Stock</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
     {% endblock content %}
