@@ -21,7 +21,7 @@ class Product(models.Model):
     name = models.TextField()
     image = models.ImageField(upload_to='images/', blank=True)
     image_thumbnail = ImageSpecField(source='image',
-                                processors=[ResizeToFill(90, 90)],
+                                processors=[ResizeToFill(400, 400)],
                                 format='JPEG',
                                 options={'quality':60})
     description = models.TextField()

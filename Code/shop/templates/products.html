@@ -1,61 +1,49 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    .card {
+        width: 25%;
+    }
+</style>
 <div class="col-sm-3">
     <h4>Categories</h4>
     <ul class="list-group">
         <a href="{% url 'products' %}" class="list-group-item"> All Categories </a>
-        {% for c in countcat %} 
-            <a href="{{ c.get_absolute_url }}" class="list-group-item catheight">{{c.name}}     
-                    <span class="badge">{{c.num_products}}</span> 
-            </a> 
+        {% for c in countcat %}
+        <a href="{{ c.get_absolute_url }}" class="list-group-item catheight">{{c.name}}
+            <span class="badge">{{c.num_products}}</span>
+        </a>
         {% endfor %}
     </ul>
 </div>
 <div class="col-sm-9">
     <form class="from-inline my-2 my-lg-0" action="{% url 'search_result' %}" method="get">
-            {%csrf_token %}
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
-            <button class="fa fas-search" type="submit"></button>
+        {%csrf_token %}
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
+        <button class="fa fas-search" type="submit"></button>
     </form>
     {% if messages %}
-        {% for msg in messages %}       
-            <div class="alert alert-success">
-            {{msg.message}}
-            </div>
-        {% endfor %}
-    {% endif %} 
-    <table class="table table-bordered table-hover table-condensed">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Image</th>
-                <th>Description</th>
-                <th>Stock</th>
-                <th>Price</th>
-                <th>Buy</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for product in products %}
-            <tr>
-                <td>{{product.id}}</td>
-                <td>{{product.name}}</td>
-                <td><img src="{{product.image_thumbnail.url}}" alt ="{{product.name}}"></td>
-                <td>{{product.description}}</td>
-                <td>{{product.stock}}</td>
-                <td>&euro;{{product.price}}</td>
-                {% if product.stock > 0 %}
-                <td><a href="{% url 'add_cart' product.id %}" class="btn btn-default btn-xs"><span
-                    class="fas fa-shopping-cart"></span></a></td>
-                {% else %}
-                <td><a href="" class="btn btn-default btn-xs"><span
-                    class="fas fa-exclamation-triangle"></span></a></td>
-                {% endif %}
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% for msg in messages %}
+    <div class="alert alert-success">
+        {{msg.message}}
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="card-deck">
+    {% for product in products %}
+        <div class="card" style="min-width: 20rem; max-width: 20rem;">
+          <img class="card-img-top" src="{{product.image_thumbnail.url}}" alt="{{product.name}}">
+          <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text"><small class="text-muted">&euro;{{product.price}}</small></p>
+            {% if product.stock > 0 %}
+            <a class="nav-link" href="{% url 'add_cart' product.id %}"><button type ="button" class="btn btn-primary btn-lg btn-block">Add to Cart</button></a>
+            {% else %}
+            <a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">Currently Out of Stock</a>
+            {% endif %}
+          </div>
+        </div>
+    {% endfor %}
 </div>
-{% endblock content %}
+    {% endblock content %}
