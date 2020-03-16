@@ -5,6 +5,7 @@
     .card {
         width: 25%;
     }
+
 </style>
 <div class="row">
     <div class="col-sm-2">
@@ -36,11 +37,13 @@
         {% endif %}
         <div class="card-deck">
             {% for product in products %}
+            
             <div class="card" style="min-width: 20rem; max-width: 20rem;">
-                <img class="card-img-top" src="{{product.image_thumbnail.url}}" alt="{{product.name}}">
+                <div class="zoom"><img class="card-img-top" src="{{product.image_thumbnail.url}}" alt="{{product.name}}"></div>
                 <div class="card-body">
                     <h5 class="card-title">{{product.name}}</h5>
                     <p class="card-text"><small class="text-muted">&euro;{{product.price}}</small></p>
+                    
                     {% if product.stock > 0 %}
                     <a class="nav-link" href="{% url 'add_cart' product.id %}"><button type="button"
                             class="btn btn-primary btn-lg btn-block">Add to Cart</button></a>
@@ -49,7 +52,7 @@
                         Out of Stock</a>
                     {% endif %}
                 </div>
-            </div>
+        </div>
             {% endfor %}
         </div>
     </div>

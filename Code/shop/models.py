@@ -5,7 +5,10 @@ from imagekit.processors import ResizeToFill
 
 class Category(models.Model):
     name = models.TextField()
-    products = models.ManyToManyField('Product')  
+    products = models.ManyToManyField('Product') 
+
+    class Meta:
+        verbose_name_plural = "Categories"
 
     def get_products(self):
         return Product.objects.filter(category=self)
