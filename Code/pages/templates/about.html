@@ -1,10 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
 
+<script>
+  $(document).ready(function() {
+ // executes when HTML-Document is loaded and DOM is ready
+console.log("document is ready");
+  
+
+  $( ".card" ).hover(
+  function() {
+    $(this).addClass('shadow-lg').css('cursor', 'pointer'); 
+  }, function() {
+    $(this).removeClass('shadow-lg');
+  }
+);
+  
+// document ready  
+});
+
+</script>
+
 <div class="jumbotron">
     <h1 class="display-4">About ACA</h1>
     <p class="lead">Here at ACA we pride ourselves on our commitment to you, our customers.</p>
     <hr class="my-4">
+    <h2>Our Values</h2>
     <p>To ensure we uphold our high standards we have set ourselves target for the upcoming years.</p>
     <div class="card-deck">
     <div class="flip-card">
@@ -52,5 +72,48 @@
         </div>
       </div>
     </div>
+    <hr class="my-4">
+    <h2>Subscriptions</h2>
+    <section class="pricing py-5">
+      <div class="container" >
+        <div class="row justify-content-center">
+          <!-- Free Tier -->
+          <div class="col-lg-4">
+            <div class="card mb-5 mb-lg-0">
+              <div class="card-body">
+                <h5 class="card-title text-muted text-uppercase text-center">Free</h5>
+                <h6 class="card-price text-center">$0<span class="period">/month</span></h6>
+                <hr>
+                <ul class="fa-ul">
+                  <li><span class="fa-li"><i class="fas fa-check"></i></span>Standard Delivery Charges</li>
+                  <li><span class="fa-li"><i class="fas fa-check"></i></span>Up to 5 Working Days Delivery</li>
+                  <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Access to Pre-release Purchases</li>
+                  <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Exclusive Discounts and Offers</li>
+                </ul>
+                <a href="#" class="btn btn-block btn-primary text-uppercase disabled">Currently Active</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Plus Tier -->
+          <div class="col-lg-4">
+            <div class="card mb-5 mb-lg-0">
+              <div class="card-body">
+                <h5 class="card-title text-muted text-uppercase text-center">Plus</h5>
+                <h6 class="card-price text-center">$9<span class="period">/month</span></h6>
+                <hr>
+                <ul class="fa-ul">
+                  <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>Free Delivery</strong></li>
+                  <li><span class="fa-li"><i class="fas fa-check"></i></span>Next Day Delivery</li>
+                  <li><span class="fa-li"><i class="fas fa-check"></i></span>Access to Pre-release Purchases</li>
+                  <li><span class="fa-li"><i class="fas fa-check"></i></span>Exclusive Discounts and Offers</li>                
+                </ul>
+                <a href="#" class="btn btn-block btn-primary text-uppercase">Purchase</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 {% endblock %}
