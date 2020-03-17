@@ -126,7 +126,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><a class="nav-link" href="{% url 'products' %}">Browse</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/shop/3">Men</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/shop/4">Women</a></li>
+          <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:8000/shop/6">Footwear</a></li>
           {% if request.user.is_authenticated %}
           <li class="nav-item"><a class="nav-link" href="{% url 'signout' %}">Sign Out</a></li>
           {% else %}
