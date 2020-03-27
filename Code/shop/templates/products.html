@@ -39,7 +39,7 @@
             {% for product in products %}
             
             <div class="card" style="min-width: 20rem; max-width: 20rem;">
-                <div class="zoom"><img class="card-img-top" src="{{product.image_thumbnail.url}}" alt="{{product.name}}"></div>
+                <a href="{% url 'productdetail' product.id %}"><div class="zoom"><img class="card-img-top" src="{{product.image_thumbnail.url}}" alt="{{product.name}}"></div></a>
                 <div class="card-body">
                     <h5 class="card-title">{{product.name}}</h5>
                     <p class="card-text"><small class="text-muted">&euro;{{product.price}}</small></p>

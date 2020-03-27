@@ -20,6 +20,9 @@ def product_list(request, category_id=None):
                     {'products': products,
                     'countcat':ccat})
  
+def productdetail(request,id):
+    product = Product.objects.get(id = id)
+    return render(request, 'product.html', {'product': product})
 
 def SignupView(request):
     if request.method =='POST':
