@@ -67,7 +67,7 @@
 }
 
 /* Individual bars */
-.bar-5 {width: 60%; height: 18px; background-color: #4CAF50;}
+.bar-5 {height: 18px; background-color: #4CAF50;}
 .bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
 .bar-3 {width: 10%; height: 18px; background-color: #00bcd4;}
 .bar-2 {width: 4%; height: 18px; background-color: #ff9800;}
@@ -143,12 +143,14 @@
         </div>
         <div class="middle">
             <div class="bar-container">
-                <div class="bar-1"></div>
+            <div class="bar-1"></div>
             </div>
         </div>
         <div class="side right">
             <div>{{product.one_star}}</div>
         </div>
+        <p>{{ product.get_star_total }}</p>
+        <p>{{ product.get_one_star }} {{ product.get_two_star }} {{ product.get_three_star }} {{ product.get_four_star }} {{ product.get_five_star }}</p>
     </div>
 </body>
 {% endblock %}
