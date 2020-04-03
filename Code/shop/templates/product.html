@@ -83,6 +83,7 @@
   }
 }
 </style>
+
 <body class="Review">
     <span class="heading">User Rating</span>
     <span class="fa fa-star checked"></span>
@@ -151,6 +152,13 @@
         </div>
         <p>{{ product.get_star_total }}</p>
         <p>{{ product.get_one_star }} {{ product.get_two_star }} {{ product.get_three_star }} {{ product.get_four_star }} {{ product.get_five_star }}</p>
-    </div>
+    </div>   
+    {% if product.stock > 0 %}
+    <a class="nav-link" href="{% url 'add_cart' product.id %}"><button type="button"
+            class="btn btn-primary btn-lg btn-block">Add to Cart</button></a>
+    {% else %}
+    <a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">Currently
+        Out of Stock</a>
+    {% endif %}
 </body>
 {% endblock %}
