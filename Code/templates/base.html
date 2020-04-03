@@ -141,6 +141,9 @@
               <span class="fas fa-shopping-cart"></span>({{item_count}})</a>
           </li>
           {% endif %}
+          <form action="{% url 'search_results' %}" method="get">
+            <input name="q" type="text" placeholder="Search...">
+          </form>
         </ul>
         </form>
       </div>
