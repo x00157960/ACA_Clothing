@@ -6,7 +6,21 @@ from .forms import SignUpForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.views.generic import ListView
+from django.db.models import Q
 from .models import Category, Product
+
+class SearchResultsView(ListView):
+    model = Product
+    template_name = 'search_results.html'
+
+    def get_queryset(self): # new
+        query = self.request.GET.get('q')
+        object_list = Product.objects.filter(
+            Q(name__icontains=query) | Q(price__icontains=query)
+        )
+        return object_list
+
+    
 
 def product_list(request, category_id=None):
     category = None
@@ -37,7 +51,6 @@ def SignupView(request):
         form = SignUpForm()
     return render(request, 'accounts/signup.html', {'form':form})
 
-   
 
 def SigninView(request):
     if request.method =='POST':

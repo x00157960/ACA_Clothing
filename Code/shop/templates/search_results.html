@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card-deck">
+        {% for product in object_list %}
+        
+        <div class="card" style="min-width: 20rem; max-width: 20rem;">
+            <a href="{% url 'productdetail' product.id %}"><div class="zoom"><img class="card-img-top" src="{{product.image_thumbnail.url}}" alt="{{product.name}}"></div></a>
+            <div class="card-body">
+                <h5 class="card-title">{{product.name}}</h5>
+                <p class="card-text"><small class="text-muted">&euro;{{product.price}}</small></p>
+                
+                {% if product.stock > 0 %}
+                <a class="nav-link" href="{% url 'add_cart' product.id %}"><button type="button"
+                        class="btn btn-primary btn-lg btn-block">Add to Cart</button></a>
+                {% else %}
+                <a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">Currently
+                    Out of Stock</a>
+                {% endif %}
+            </div>
+    </div>
+{% endfor %}
+
+{% endblock content %}

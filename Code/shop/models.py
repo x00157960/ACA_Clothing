@@ -39,7 +39,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-    def get_one_star(self):
+    '''def get_one_star(self):
         star_total = self.one_star + self.two_star + self.three_star + self.four_star + self.five_star
         one_star_total = 100 * (self.one_star / star_total)
         return one_star_total
@@ -62,4 +62,4 @@ class Product(models.Model):
     def get_five_star(self):
         star_total = self.one_star + self.two_star + self.three_star + self.four_star + self.five_star
         five_star_total = 100 * (self.five_star / star_total)
-        return five_star_total
+        return five_star_total'''

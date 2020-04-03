@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'pages.apps.PagesConfig',
     'order.apps.OrderConfig',
-    'search_app.apps.SearchAppConfig',
     'ship_detail.apps.ShipDetailConfig',
 ]
 
@@ -63,8 +62,7 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR,'templates'),os.path.join(BASE_DIR,'shop','templates/'),
                                             os.path.join(BASE_DIR,'cart','templates/'),
                                             os.path.join(BASE_DIR,'order','templates/'),
-                                            os.path.join(BASE_DIR,'ship_detail','templates/'),
-                                            os.path.join(BASE_DIR,'search_app','templates/')],
+                                            os.path.join(BASE_DIR,'ship_detail','templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
