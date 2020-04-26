@@ -1,3 +1,4 @@
+import statistics
 from django.db import models
 from django.urls import reverse
 from imagekit.models import ImageSpecField
@@ -30,16 +31,16 @@ class Product(models.Model):
     description = models.TextField()
     stock = models.IntegerField()
     price = models.DecimalField(max_digits=10,decimal_places=2)
-    one_star = models.IntegerField(null=True)
-    two_star = models.IntegerField(null=True)
-    three_star = models.IntegerField(null=True)
-    four_star = models.IntegerField(null=True)
-    five_star = models.IntegerField(null=True)
+    one_star = models.IntegerField(default=0)
+    two_star = models.IntegerField(default=0)
+    three_star = models.IntegerField(default=0)
+    four_star = models.IntegerField(default=0)
+    five_star = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
 
-    '''def get_one_star(self):
+    def get_one_star(self):
         star_total = self.one_star + self.two_star + self.three_star + self.four_star + self.five_star
         one_star_total = 100 * (self.one_star / star_total)
         return one_star_total
@@ -62,4 +63,14 @@ class Product(models.Model):
     def get_five_star(self):
         star_total = self.one_star + self.two_star + self.three_star + self.four_star + self.five_star
         five_star_total = 100 * (self.five_star / star_total)
-        return five_star_total'''
+        return five_star_total
+
+    def get_star_total(self):
+         star_total = self.one_star + self.two_star + self.three_star + self.four_star + self.five_star
+         return star_total
+
+    def get_star_avg(self):
+         star_total = self.one_star + self.two_star + self.three_star + self.four_star + self.five_star
+         star_scores = self.one_star + (self.two_star*2) + (self.three_star*3) + (self.four_star*4) + (self.five_star*5)
+         star_avg = round(star_scores/star_total, 2)
+         return star_avg

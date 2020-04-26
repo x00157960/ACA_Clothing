@@ -3,7 +3,6 @@ from . import views
 from shop.views import productdetail
 from .views import SearchResultsView
 
-
 urlpatterns = [
     path('', views.product_list,
             name='products'),

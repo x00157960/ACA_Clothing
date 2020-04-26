@@ -18,9 +18,7 @@ class SearchResultsView(ListView):
         object_list = Product.objects.filter(
             Q(name__icontains=query)
         )
-        return object_list
-
-    
+        return object_list    
 
 def product_list(request, category_id=None):
     category = None
@@ -71,5 +69,3 @@ def SigninView(request):
 def SignoutView(request):
     logout(request)
     return redirect('home')
-
-

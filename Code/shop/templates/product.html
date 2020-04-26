@@ -9,156 +9,179 @@
 <!-- Font Awesome Icon Library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-* {
-  box-sizing: border-box;
-}
-
-#Review {
-  font-family: Arial;
-  margin: 0 auto; /* Center website */
-  max-width: 800px; /* Max width */
-  padding: 20px;
-}
-
-.heading {
-  font-size: 25px;
-  margin-right: 25px;
-}
-
-.fa {
-  font-size: 25px;
-}
-
-.checked {
-  color: orange;
-}
-
-/* Three column layout */
-.side {
-  float: left;
-  width: 15%;
-  margin-top:10px;
-}
-
-.middle {
-  margin-top:10px;
-  float: left;
-  width: 70%;
-}
-
-/* Place text to the right */
-.right {
-  text-align: right;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* The bar container */
-.bar-container {
-  width: 100%;
-  background-color: #f1f1f1;
-  text-align: center;
-  color: white;
-}
-
-/* Individual bars */
-.bar-5 {height: 18px; background-color: #4CAF50;}
-.bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
-.bar-3 {width: 10%; height: 18px; background-color: #00bcd4;}
-.bar-2 {width: 4%; height: 18px; background-color: #ff9800;}
-.bar-1 {width: 15%; height: 18px; background-color: #f44336;}
-
-/* Responsive layout - make the columns stack on top of each other instead of next to each other */
-@media (max-width: 400px) {
-  .side, .middle {
-    width: 100%;
+  * {
+    box-sizing: border-box;
   }
+
+  #Review {
+    font-family: Arial;
+    margin: 0 auto;
+    /* Center website */
+    max-width: 800px;
+    /* Max width */
+    padding: 20px;
+  }
+
+  .heading {
+    font-size: 25px;
+    margin-right: 25px;
+  }
+
+  .fa {
+    font-size: 25px;
+  }
+
+  .checked {
+    color: orange;
+  }
+
+  /* Three column layout */
+  .side {
+    float: left;
+    width: 15%;
+    margin-top: 10px;
+  }
+
+  .middle {
+    margin-top: 10px;
+    float: left;
+    width: 70%;
+  }
+
+  /* Place text to the right */
   .right {
-    display: none;
+    text-align: right;
   }
-}
+
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  /* The bar container */
+  .bar-container {
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    color: white;
+  }
+
+  /* Individual bars */
+  .bar-5 {
+    height: 18px;
+    background-color: #4CAF50;
+  }
+
+  .bar-4 {
+    width: 30%;
+    height: 18px;
+    background-color: #2196F3;
+  }
+
+  .bar-3 {
+    width: 10%;
+    height: 18px;
+    background-color: #00bcd4;
+  }
+
+  .bar-2 {
+    width: 4%;
+    height: 18px;
+    background-color: #ff9800;
+  }
+
+  .bar-1 {
+    width: 15%;
+    height: 18px;
+    background-color: #f44336;
+  }
+
+  /* Responsive layout - make the columns stack on top of each other instead of next to each other */
+  @media (max-width: 400px) {
+
+    .side,
+    .middle {
+      width: 100%;
+    }
+
+    .right {
+      display: none;
+    }
+  }
 </style>
 
 <body class="Review">
-    <span class="heading">User Rating</span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star checked"></span>
-    <span class="fa fa-star"></span>
-    <p>4.1 average based on 254 reviews.</p>
-    <hr style="border:3px solid #f1f1f1">
+  <span class="heading">User Rating</span>
+  {% if product.get_star_total != 0 %}
+  {% if product.get_star_avg < 1 %}
+  <span class="fa fa-star"></span>
+  <span class="fa fa-star"></span>
+  <span class="fa fa-star"></span>
+  <span class="fa fa-star"></span>
+  <span class="fa fa-star"></span>
+  {% elif product.get_star_avg < 2 %}
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star"></span>
+  <span class="fa fa-star"></span>
+  <span class="fa fa-star"></span>
+  <span class="fa fa-star"></span>
+  {% elif product.get_star_avg < 3 %}
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star"></span>
+  <span class="fa fa-star"></span>
+  <span class="fa fa-star"></span>
+  {% elif product.get_star_avg < 4 %}
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star"></span>
+  <span class="fa fa-star"></span>
+  {% elif product.get_star_avg < 5 %}
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star"></span>
+  {% else %}
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  {% endif %}
+  {% endif %}
 
-    <div class="row">
-        <div class="side">
-            <div>5 star</div>
-        </div>
-        <div class="middle">
-            <div class="bar-container">
-                <div class="bar-5"></div>
-            </div>
-        </div>
-        <div class="side right">
-            <div>{{product.five_star}}</div>
-        </div>
-        <div class="side">
-            <div>4 star</div>
-        </div>
-        <div class="middle">
-            <div class="bar-container">
-                <div class="bar-4"></div>
-            </div>
-        </div>
-        <div class="side right">
-            <div>{{product.four_star}}</div>
-        </div>
-        <div class="side">
-            <div>3 star</div>
-        </div>
-        <div class="middle">
-            <div class="bar-container">
-                <div class="bar-3"></div>
-            </div>
-        </div>
-        <div class="side right">
-            <div>{{product.three_star}}</div>
-        </div>
-        <div class="side">
-            <div>2 star</div>
-        </div>
-        <div class="middle">
-            <div class="bar-container">
-                <div class="bar-2"></div>
-            </div>
-        </div>
-        <div class="side right">
-            <div>{{product.two_star}}</div>
-        </div>
-        <div class="side">
-            <div>1 star</div>
-        </div>
-        <div class="middle">
-            <div class="bar-container">
-            <div class="bar-1"></div>
-            </div>
-        </div>
-        <div class="side right">
-            <div>{{product.one_star}}</div>
-        </div>
-        <p>{{ product.get_star_total }}</p>
-        <p>{{ product.get_one_star }} {{ product.get_two_star }} {{ product.get_three_star }} {{ product.get_four_star }} {{ product.get_five_star }}</p>
-    </div>   
-    {% if product.stock > 0 %}
-    <a class="nav-link" href="{% url 'add_cart' product.id %}"><button type="button"
-            class="btn btn-primary btn-lg btn-block">Add to Cart</button></a>
-    {% else %}
-    <a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">Currently
-        Out of Stock</a>
-    {% endif %}
+  {% if product.get_star_total == 0 %}
+  <p>This product has not been reviewed yet.</p>
+  {% else %}
+  <p>{{product.get_star_avg}} average based on {{product.get_star_total}} reviews.</p>
+  {% endif %}
+  <form>
+    <div class="form-group col-md-4">
+      <label for="inputState">Enter Rating</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option>5</option>
+        <option>4</option>
+        <option>3</option>
+        <option>2</option>
+        <option>1</option>
+      </select>
+    </div>
+  </form>
+  <hr style="border:3px solid #f1f1f1">
+
+
+  {% if product.stock > 0 %}
+  <a class="nav-link" href="{% url 'add_cart' product.id %}"><button type="button"
+      class="btn btn-primary btn-lg btn-block">Add to Cart</button></a>
+  {% else %}
+  <a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">Currently
+    Out of Stock</a>
+  {% endif %}
+
 </body>
 {% endblock %}
