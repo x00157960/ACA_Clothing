@@ -34,9 +34,21 @@
   .checked {
     color: orange;
   }
-
-
 </style>
+<div class="form-group col-md-4">
+  <label for="inputState">Size</label>
+  <select id="inputState" class="form-control">
+    <option selected>Choose...</option>
+    <option>XS</option>
+    <option>S</option>
+    <option>M</option>
+    <option>L</option>
+    <option>XL</option>
+    <option>XXL</option>
+    <option>XXXL</option>
+  </select>
+</div>
+<hr style="border:3px solid #f1f1f1">
 
 <body class="Review">
   <span class="heading">User Rating</span>
@@ -85,9 +97,18 @@
   {% else %}
   <p>{{product.get_star_avg}} average based on {{product.get_star_total}} reviews.</p>
   {% endif %}
-  
-  <hr style="border:3px solid #f1f1f1">
 
+  <div class="form-group col-md-4">
+    <label for="inputState">Choose a Star Review</label>
+    <select id="inputState" class="form-control">
+      <option selected>Choose...</option>
+      <option>5</option>
+      <option>4</option>
+      <option>3</option>
+      <option>2</option>
+      <option>1</option>
+    </select>
+  </div>
 
   {% if product.stock > 0 %}
   <a class="nav-link" href="{% url 'add_cart' product.id %}"><button type="button"

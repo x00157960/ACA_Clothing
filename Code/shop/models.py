@@ -40,32 +40,6 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-
-CHOOSE_SIZE = (
-('Extra Small', 'XS'),
-('Small', 'S'),
-('Medium', 'M'),
-('Large', 'L'),
-('Extra Large', 'XL'),
-('Double Large', 'XXL'),
-('Triple Large', 'XXXL'),
-)
-
-class ProductSize(models.Model):
-    product = models.ForeignKey(Product, "on_delete")
-    size = models.CharField(max_length=120, choices=CHOOSE_SIZE)
-    price = models.DecimalField(decimal_places=2, max_digits=20)
-    active = models.BooleanField(default=True)
-
-    def __str__(self):
-            return self.size
-
-
-    def get_absolute_url(self):
-            return self.product.get_absolute_url()
-
-    
-
     def get_one_star(self):
         star_total = self.one_star + self.two_star + self.three_star + self.four_star + self.five_star
         one_star_total = 100 * (self.one_star / star_total)
@@ -92,11 +66,34 @@ class ProductSize(models.Model):
         return five_star_total
 
     def get_star_total(self):
-         star_total = self.one_star + self.two_star + self.three_star + self.four_star + self.five_star
-         return star_total
+            star_total = self.one_star + self.two_star + self.three_star + self.four_star + self.five_star
+            return star_total
 
     def get_star_avg(self):
-         star_total = self.one_star + self.two_star + self.three_star + self.four_star + self.five_star
-         star_scores = self.one_star + (self.two_star*2) + (self.three_star*3) + (self.four_star*4) + (self.five_star*5)
-         star_avg = round(star_scores/star_total, 2)
-         return star_avg
+            star_total = self.one_star + self.two_star + self.three_star + self.four_star + self.five_star
+            star_scores = self.one_star + (self.two_star*2) + (self.three_star*3) + (self.four_star*4) + (self.five_star*5)
+            star_avg = round(star_scores/star_total, 2)
+            return star_avg
+
+
+CHOOSE_SIZE = (
+('Extra Small', 'XS'),
+('Small', 'S'),
+('Medium', 'M'),
+('Large', 'L'),
+('Extra Large', 'XL'),
+('Double Large', 'XXL'),
+('Triple Large', 'XXXL'),
+)
+
+class ProductSize(models.Model):
+    product = models.ForeignKey(Product, "on_delete")
+    size = models.CharField(max_length=120, choices=CHOOSE_SIZE)
+    price = models.DecimalField(decimal_places=2, max_digits=20)
+    active = models.BooleanField(default=True)
+
+    def __str__(self):
+            return self.size
+
+    def get_absolute_url(self):
+            return self.product.get_absolute_url()
