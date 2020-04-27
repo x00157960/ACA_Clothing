@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
     'order.apps.OrderConfig',
     'ship_detail.apps.ShipDetailConfig',
+    'stripe',
 ]
 
 MIDDLEWARE = [
@@ -131,5 +132,5 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Stripe
-STRIPE_PUBLISHABLE_KEY = 'pk_test_Q228CoSZyokg9zQBZ589D6mZ00dquu1bsI'
 STRIPE_SECRET_KEY = 'sk_test_9B5DjwXUrePTRuHpGVJY4yPG00RQ5rADJB'
+STRIPE_PUBLISHABLE_KEY = 'pk_test_Q228CoSZyokg9zQBZ589D6mZ00dquu1bsI'

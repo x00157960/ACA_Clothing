@@ -3,22 +3,9 @@ from django.conf import settings
 from django.views.generic.base import TemplateView
 from django.shortcuts import render
 
-stripe.api_key = settings.STRIPE_SECRET_KEY
-
-class ShipPageView(TemplateView):
-    template_name = 'ship.html'
-
-    def get_context_data(self, **kwargs): 
-        context = super().get_context_data(**kwargs)
-        context['key'] = settings.STRIPE_PUBLISHABLE_KEY
-        return context
-
-def charge(request):
-    if request.method == 'POST':
-        charge = stripe.Charge.create(
-            amount=500,
-            currency='usd',
-            description='A Django charge',
-            source=request.POST['stripeToken']
-        )
-        return render(request, 'order.html')
+def payment(request):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    stripe_total = int(12345)
+    description = 'ACA  - New Order'
+    data_key = settings.STRIPE_PUBLISHABLE_KEY
+    return render(request, 'ship.html', dict(data_key = data_key, stripe_total = stripe_total, description = description))
