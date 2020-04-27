@@ -5,6 +5,7 @@ from cart.views import _cart_id
 from shop.models import Product
 from django.core.exceptions import ObjectDoesNotExist
 
+
 def order_create(request, total=0, cart_items = None):
     if request.user.is_authenticated:
         email = str(request.user.email)
@@ -30,4 +31,9 @@ def order_create(request, total=0, cart_items = None):
     except ObjectDoesNotExist:
         pass
     return render(request, 'order.html', dict(cart_items = cart_items, total=total))
-            
+
+def order_history(request):
+    if request.user.is_authenticated:
+        email= str(request.user.email)
+        order_details = Order.objects.filter(emailAddress=email)
+    return render(request, 'orders_list.html', {'order_details':order_details})
