@@ -4,7 +4,9 @@ from cart.models import Cart, CartItem
 from cart.views import _cart_id
 from shop.models import Product
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.shortcuts import render, get_object_or_404, redirect
+from datetime import datetime, timezone
+from django.contrib import messages
 
 def order_create(request, total=0, cart_items = None):
     if request.user.is_authenticated:
@@ -37,3 +39,18 @@ def order_history(request):
         email= str(request.user.email)
         order_details = Order.objects.filter(emailAddress=email)
     return render(request, 'orders_list.html', {'order_details':order_details})
+
+def cancel_order(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    order_date = order.created
+    current_date = datetime.now(timezone.utc)
+    date_diff = current_date - order_date
+    minutes_diff = date_diff.total_seconds() / 60.0
+    if minutes_diff <= 30:
+        order.delete()
+        messages.add_message(request, messages.INFO,
+                    'Order is now cancelled')
+    else:
+        messages.add_message(request, messages.INFO, 
+                    'Sorry, it is too late to cancel this order')
+    return redirect('order_history')

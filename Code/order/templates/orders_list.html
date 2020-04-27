@@ -30,11 +30,11 @@
 			<tbody>
 				{% for order_item in order.get_items  %}
 				<tr>
-					<td>{{order_item.id}</td>
-					<td>{{order_item.product</td>
+					<td>{{order_item.id}}</td>
+					<td>{{order_item.product}}</td>
 					<td>{{order_item.quantity}}</td>
 					<td>&euro; {{order_item.price}}</td>
-					<td>&euro; {{order_item.get_cost}</td>				
+					<td>&euro; {{order_item.get_cost}}</td>				
 				</tr>
 				{% endfor %}
 				<!-- End of For loop -->			
@@ -45,11 +45,12 @@
 				<p class="text-right"><strong>Order Total: &euro; 
                                 {{order.get_total_cost}}</strong></p>
 			</div>  
-        </div>
-        {% endfor %}
-        <p>
-            <a href=""><button class="btn btn-primary">Cancel Order</button></a>
+		</div>
+		<p>
+            <a href="{% url 'cancel_order' order.id %}"><button class="btn btn-primary">Cancel Order</button></a>
         </p>
+        {% endfor %}
+        
 	
 </div>
 {% endblock content %}
